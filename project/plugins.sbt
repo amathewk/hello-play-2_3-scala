@@ -20,3 +20,10 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0-M2a")
 addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0-M2a")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.0.0-M2a")
+
+
+// Kamon
+resolvers += Resolver.url("Kamon Releases", url("http://repo.kamon.io"))(Resolver.ivyStylePatterns)
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-aspectj" % "0.10.1")
+
