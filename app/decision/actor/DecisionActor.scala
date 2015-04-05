@@ -3,6 +3,7 @@ package decision.actor
 import akka.actor.{ActorLogging, Props, ActorRef, Actor}
 import akka.actor.Actor.Receive
 import akka.event.{LoggingReceive, Logging}
+import akka.routing.RoundRobinPool
 import decision.domain.DecisionNode
 import scala.collection.mutable
 import scala.collection.mutable.{Map, ArrayBuffer, Buffer}
@@ -15,6 +16,7 @@ class DecisionActor(val decisionNode:DecisionNode) extends Actor with ActorLoggi
   val requestContexts = Map[String, RequestContext]()
 
   def receive = LoggingReceive {
+
     case request:Request => {
       if(context.children.size == 0) {
         sender ! Result(request, count = 1)
@@ -42,6 +44,7 @@ class DecisionActor(val decisionNode:DecisionNode) extends Actor with ActorLoggi
   override def preStart(): Unit = {
 
     for(childNode <- decisionNode.children) {
+//      context.actorOf(RoundRobinPool(15).props(DecisionActor.props(childNode)), childNode.id)
       context.actorOf(DecisionActor.props(childNode), childNode.id)
     }
     super.preStart()

@@ -1,3 +1,4 @@
+import org.scalatest.FlatSpec
 import org.specs2.mutable._
 import org.specs2.runner._
 import org.junit.runner._
@@ -24,7 +25,7 @@ class ApplicationSpec extends Specification {
 
       status(home) must equalTo(OK)
 //      contentType(home) must beSome.which(_ == "text/html")
-      contentAsString(home) must contain ("Hello Play Framework")
+      contentAsString(home) must contain ("140")
     }
   }
 }
