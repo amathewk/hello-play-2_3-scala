@@ -1,4 +1,4 @@
-name := """hello-play-2_3-scala"""
+name := """play-akka"""
 
 version := "1.0-SNAPSHOT"
 
